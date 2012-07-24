@@ -10,11 +10,12 @@ Usage
 
 The module exports a single function `is_valid_GTIN` - which accepts either string or integer arguments. Dashes in the code (commonly found in ISBN numbers) are supported. 
 
-`from gtin_validator import *
+```python
+from gtin_validator import *
 
 if __name__ == '__main__':
     print is_valid_GTIN("9780552133265")
     print is_valid_GTIN("978-0-552-13326-5")
     print is_valid_GTIN(9780552133265)
-`
+```
 
