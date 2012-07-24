@@ -29,22 +29,22 @@ def is_valid_GTIN(code):
 
 def _clean(code):
   if isinstance(code,(int,long)):
-	return str(code).zfill(14)
+        return str(code).zfill(14)
   elif isinstance(code,basestring):
-	return code.replace("-","").strip().zfill(14)
+        return code.replace("-","").strip().zfill(14)
   else:
-	raise TypeError("Expected string or integer type as input parameter")
+        raise TypeError("Expected string or integer type as input parameter")
 
 
 def _is_valid_code(code):
   code_length = len(code)
 
   if not code.isdigit():
-	return False
+        return False
   elif not ((code_length == 8) or (code_length == 12) or (code_length == 13) or (code_length == 14) or (code_length == 18)):
-	return False
+        return False
   else:
-	return _is_gtin_checksum_valid(code)
+        return _is_gtin_checksum_valid(code)
 
 
 def _is_gtin_checksum_valid(code):
@@ -52,12 +52,12 @@ def _is_gtin_checksum_valid(code):
   total = 0
 
   for i in xrange(1,code_length):
-	if i % 2 == 0:
-	  total = total + int(code[i-1])
-	else:
-	  total = total + (3 * int(code[i-1]))
+        if i % 2 == 0:
+          total = total + int(code[i-1])
+        else:
+          total = total + (3 * int(code[i-1]))
 
-  check_digit = 10 - (total % 10)
+  check_digit = (10 - (total % 10)) % 10
   return int(code[code_length - 1]) == check_digit
 
 
