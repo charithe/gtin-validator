@@ -48,11 +48,11 @@ def _is_valid_code(code):
 def _is_gtin_checksum_valid(code):
   total = 0
 
-  for i in xrange(1,len(code)):
-        if i % 2 == 0:
-          total = total + int(code[i-1])
+  for (i, c) in enumerate(code[:-1]):
+        if i % 2 == 1:
+          total = total + int(c)
         else:
-          total = total + (3 * int(code[i-1]))
+          total = total + (3 * int(c))
 
   check_digit = (10 - (total % 10)) % 10
   return int(code[-1]) == check_digit
