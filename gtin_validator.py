@@ -45,7 +45,7 @@ def _is_valid_code(code):
         return _is_gtin_checksum_valid(code)
 
 
-def _is_gtin_checksum_valid(code):
+def _gtin_checksum(code):
   total = 0
 
   for (i, c) in enumerate(code[:-1]):
@@ -55,9 +55,11 @@ def _is_gtin_checksum_valid(code):
           total = total + (3 * int(c))
 
   check_digit = (10 - (total % 10)) % 10
-  return int(code[-1]) == check_digit
+  return check_digit
 
 
+def _is_gtin_checksum_valid(code):
+    return int(code[-1]) == _gtin_checksum(code)
 
 
 
