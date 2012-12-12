@@ -37,28 +37,25 @@ def _clean(code):
 
 
 def _is_valid_code(code):
-  code_length = len(code)
-
   if not code.isdigit():
         return False
-  elif not ((code_length == 8) or (code_length == 12) or (code_length == 13) or (code_length == 14) or (code_length == 18)):
+  elif len(code) not in (8, 12, 13, 14, 18):
         return False
   else:
         return _is_gtin_checksum_valid(code)
 
 
 def _is_gtin_checksum_valid(code):
-  code_length = len(code)
   total = 0
 
-  for i in xrange(1,code_length):
+  for i in xrange(1,len(code)):
         if i % 2 == 0:
           total = total + int(code[i-1])
         else:
           total = total + (3 * int(code[i-1]))
 
   check_digit = (10 - (total % 10)) % 10
-  return int(code[code_length - 1]) == check_digit
+  return int(code[-1]) == check_digit
 
 
 
