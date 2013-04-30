@@ -29,14 +29,15 @@ def is_valid_GTIN(code):
 
 def add_check_digit(code):
   """ Adds a check digit to the end of code. """
-  return code + str(_gtin_checksum(code))
+  cleaned_code = _clean(code, fill=13)
+  return cleaned_code + str(_gtin_checksum(cleaned_code))
 
 
-def _clean(code):
+def _clean(code, fill=14):
   if isinstance(code,(int,long)):
-        return str(code).zfill(14)
+        return str(code).zfill(fill)
   elif isinstance(code,basestring):
-        return code.replace("-","").strip().zfill(14)
+        return code.replace("-","").strip().zfill(fill)
   else:
         raise TypeError("Expected string or integer type as input parameter")
 
