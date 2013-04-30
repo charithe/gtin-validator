@@ -20,54 +20,50 @@ the method defined at http://www.gs1.org/barcodes/support/check_digit_calculator
 
 """
 
-def is_valid_GTIN(code):
-  """ Validates any GTIN-8, GTIN-12, GTIN-13 or GTIN-14 code. """
-  cleaned_code = _clean(code)
 
-  return _is_valid_code(cleaned_code)
+def is_valid_GTIN(code):
+    """ Validates any GTIN-8, GTIN-12, GTIN-13 or GTIN-14 code. """
+    cleaned_code = _clean(code)
+
+    return _is_valid_code(cleaned_code)
 
 
 def add_check_digit(code):
-  """ Adds a check digit to the end of code. """
-  cleaned_code = _clean(code, fill=13)
-  return cleaned_code + str(_gtin_checksum(cleaned_code))
+    """ Adds a check digit to the end of code. """
+    cleaned_code = _clean(code, fill=13)
+    return cleaned_code + str(_gtin_checksum(cleaned_code))
 
 
 def _clean(code, fill=14):
-  if isinstance(code,(int,long)):
+    if isinstance(code, (int, long)):
         return str(code).zfill(fill)
-  elif isinstance(code,basestring):
-        return code.replace("-","").strip().zfill(fill)
-  else:
+    elif isinstance(code, basestring):
+        return code.replace("-", "").strip().zfill(fill)
+    else:
         raise TypeError("Expected string or integer type as input parameter")
 
 
 def _is_valid_code(code):
-  if not code.isdigit():
+    if not code.isdigit():
         return False
-  elif len(code) not in (8, 12, 13, 14, 18):
+    elif len(code) not in (8, 12, 13, 14, 18):
         return False
-  else:
+    else:
         return _is_gtin_checksum_valid(code)
 
 
 def _gtin_checksum(code):
-  total = 0
+    total = 0
 
-  for (i, c) in enumerate(code):
+    for (i, c) in enumerate(code):
         if i % 2 == 1:
-          total = total + int(c)
+            total = total + int(c)
         else:
-          total = total + (3 * int(c))
+            total = total + (3 * int(c))
 
-  check_digit = (10 - (total % 10)) % 10
-  return check_digit
+    check_digit = (10 - (total % 10)) % 10
+    return check_digit
 
 
 def _is_gtin_checksum_valid(code):
     return int(code[-1]) == _gtin_checksum(code[:-1])
-
-
-
-
-
