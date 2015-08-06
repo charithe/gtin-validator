@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
-from gtin_validator import *
+from .validator import *
 
 
 class GTINValidatorTest(unittest.TestCase):

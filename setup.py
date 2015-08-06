@@ -6,20 +6,16 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-# Get the long description from the relevant file
-with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
-    long_description = f.read()
-
 setup(
     name='gtin-validator',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.0',
+    version='1.0.2',
 
     description='Validator for Global Trade Item Numbers (GTIN)',
-    long_description=long_description,
+    long_description='Validator for Global Trade Item Numbers (GTIN)',
 
     # The project's main homepage.
     url='https://github.com/charithe/gtin-validator',
@@ -88,7 +84,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'validate-gtin=gtin_validator:main'
+            'validate-gtin=gtin.validator:main'
         ],
     },
 )
