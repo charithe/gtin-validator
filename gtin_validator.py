@@ -20,6 +20,11 @@ the method defined at http://www.gs1.org/barcodes/support/check_digit_calculator
 
 """
 
+import sys
+if sys.version_info < (3,):
+    integer_types = (int, long,)
+else:
+    integer_types = (int,)
 
 def is_valid_GTIN(code):
     """ Validates any GTIN-8, GTIN-12, GTIN-13 or GTIN-14 code. """
@@ -35,7 +40,7 @@ def add_check_digit(code):
 
 
 def _clean(code, fill=14):
-    if isinstance(code, (int, long)):
+    if isinstance(code, integer_types):
         return str(code).zfill(fill)
     elif isinstance(code, basestring):
         return code.replace("-", "").strip().zfill(fill)
