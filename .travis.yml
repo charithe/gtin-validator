@@ -1,0 +1,17 @@
+language: python
+python:
+- '2.7'
+- '3.2'
+- '3.3'
+- '3.4'
+- '3.5'
+- nightly
+script: gtin_validator_test.py
+deploy:
+  provider: pypi
+  user: charithe
+  password:
+    secure: AvaaOi0Xp0JxMav0ifro+SGWg0VOZtU3XYYdBJN6sIWr13QGuGGB3myXRf+BR776SHus7xf5LTcAv9TPnoGbWFK+6XP0nXKh3pEMw7kq6GHwZSAzgfVn8ZZuS6fiAWaeKpGZMXXZ+hO3q4NrC260khSckIaXnWzhPKn2KDhBc66blrBPhqmc1IQ8QIYh7r8U8yrvECaXI3wQjyMrvrgjwp2Y4sM8ReV4l+Qm6CIE8iNsy3pg40zcgnMcCNepy6AVRCoGBLZeEfHxmh0qK0rWWK3aDLSORHQhER5hjADwRuhIgStROaafhFx+et7NmnRTlx4dxVyPpVASjXx2oK1zUkydxFACHfcf7Im+9i0sQtwyNQk1J2lrpj2aqbfy3bgNrSbnw96+g5t8J1vp3nemJ6P1kvxmsXSV0t7+iCGxHIElv8ptIVa12w/L2PxZnmbJigBHxUcZNAkt5ALU3hqgA29/vspiCqbtRwisZHroq38CmA0C77heDCapGV6YYwcx37OBZa4Prhynfb8NSkdiejrlEhcOX3Iv2YHjwvVs9pSCL7Xena2ltALNJUJwOe5d0qJiA+4dMzOoulwFHKxuG4XniCEsGxthIvrUJas5e+aTKzQ8B8mPUqh03rgrejpxgY7HXQUWC5JriXWVr64waoZLBjZ24Ey5/6kvIVuk9l0=
+  on:
+    tags: true
+    repo: charithe/gtin-validator
