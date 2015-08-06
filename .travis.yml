@@ -1,12 +1,9 @@
 language: python
 python:
 - '2.7'
-- '3.2'
-- '3.3'
-- '3.4'
 - '3.5'
 - nightly
-script: gtin_validator_test.py
+script: python gtin_validator_test.py
 deploy:
   provider: pypi
   user: charithe
