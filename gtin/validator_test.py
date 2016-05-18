@@ -9,6 +9,9 @@ class GTINValidatorTest(unittest.TestCase):
     def test_incorrect_length_string(self):
         self.assertFalse(is_valid_GTIN("1234567"))
 
+    def test_incorrect_length_string_valid_when_padded(self):
+        self.assertFalse(is_valid_GTIN("123"))
+
     def test_incorrect_length_number(self):
         self.assertFalse(is_valid_GTIN(12345678910))
 

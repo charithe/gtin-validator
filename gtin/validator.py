@@ -31,15 +31,15 @@ def is_valid_GTIN(code):
 
 def add_check_digit(code):
     """ Adds a check digit to the end of code. """
-    cleaned_code = _clean(code, fill=13)
+    cleaned_code = _clean(code).zfill(13)
     return cleaned_code + str(_gtin_checksum(cleaned_code))
 
 
 def _clean(code, fill=14):
     if isinstance(code, six.integer_types):
-        return str(code).zfill(fill)
+        return str(code)
     elif isinstance(code, six.string_types):
-        return code.replace("-", "").strip().zfill(fill)
+        return code.replace("-", "").strip()
     else:
         raise TypeError("Expected string or integer type as input parameter")
 
@@ -50,7 +50,7 @@ def _is_valid_code(code):
     elif len(code) not in (8, 12, 13, 14, 18):
         return False
     else:
-        return _is_gtin_checksum_valid(code)
+        return _is_gtin_checksum_valid(code.zfill(14))
 
 
 def _gtin_checksum(code):
@@ -67,4 +67,5 @@ def _gtin_checksum(code):
 
 
 def _is_gtin_checksum_valid(code):
+    cleaned_code = code
     return int(code[-1]) == _gtin_checksum(code[:-1])
