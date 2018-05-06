@@ -67,5 +67,5 @@ def _gtin_checksum(code):
 
 
 def _is_gtin_checksum_valid(code):
-    cleaned_code = code
+
     return int(code[-1]) == _gtin_checksum(code[:-1])

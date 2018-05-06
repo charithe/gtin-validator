@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
-from .validator import *
+from .validator import is_valid_GTIN, add_check_digit
 
 
 class GTINValidatorTest(unittest.TestCase):
@@ -79,37 +79,37 @@ class GTINValidatorTest(unittest.TestCase):
         self.assertTrue(is_valid_GTIN("7896085864520"))
 
     def test_add_check_digit_gtin14_string(self):
-        self.assertEquals(add_check_digit('9513572584567'), '95135725845679')
+        self.assertEqual(add_check_digit('9513572584567'), '95135725845679')
 
     def test_add_check_digit_gtin14_number(self):
-        self.assertEquals(add_check_digit(9513572584567), '95135725845679')
+        self.assertEqual(add_check_digit(9513572584567), '95135725845679')
 
     def test_add_check_digit_gtin13_string(self):
-        self.assertEquals(add_check_digit('978055213326'), '09780552133265')
+        self.assertEqual(add_check_digit('978055213326'), '09780552133265')
 
     def test_add_check_digit_gtin13_number(self):
-        self.assertEquals(add_check_digit(978055213326), '09780552133265')
+        self.assertEqual(add_check_digit(978055213326), '09780552133265')
 
     def test_add_check_digit_gtin13_leading_zeros(self):
-        self.assertEquals(add_check_digit('0978055213326'), '09780552133265')
+        self.assertEqual(add_check_digit('0978055213326'), '09780552133265')
 
     def test_add_check_digit_gtin12_string(self):
-        self.assertEquals(add_check_digit('95175385265'), '00951753852654')
+        self.assertEqual(add_check_digit('95175385265'), '00951753852654')
 
     def test_add_check_digit_gtin12_number(self):
-        self.assertEquals(add_check_digit(95175385265), '00951753852654')
+        self.assertEqual(add_check_digit(95175385265), '00951753852654')
 
     def test_add_check_digit_gtin12_leading_zeros(self):
-        self.assertEquals(add_check_digit('0095175385265'), '00951753852654')
+        self.assertEqual(add_check_digit('0095175385265'), '00951753852654')
 
     def test_add_check_digit_gtin8_string(self):
-        self.assertEquals(add_check_digit('9879514'), '00000098795147')
+        self.assertEqual(add_check_digit('9879514'), '00000098795147')
 
     def test_add_check_digit_gtin8_number(self):
-        self.assertEquals(add_check_digit(9879514), '00000098795147')
+        self.assertEqual(add_check_digit(9879514), '00000098795147')
 
     def test_add_check_digit_gtin8_leading_zeros(self):
-        self.assertEquals(add_check_digit('0000009879514'), '00000098795147')
+        self.assertEqual(add_check_digit('0000009879514'), '00000098795147')
 
 
 if __name__ == '__main__':
